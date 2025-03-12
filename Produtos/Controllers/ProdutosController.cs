@@ -34,15 +34,18 @@ namespace Produtos.Controllers
             {
                 return NotFound();
             }
-
-            var produtosModel = await _context.ProdutosModel
-                .FirstOrDefaultAsync(m => m.Codigo == id);
+            ProdutosModel? produtosModel = await GetItem(id);
             if (produtosModel == null)
             {
-                    return NotFound();
+                return NotFound();
             }
 
             return View(produtosModel);
+        }
+
+        private async Task<ProdutosModel?> GetItem(int? id)
+        {
+            return await _context.ProdutosModel.FindAsync(id);
         }
 
         // GET: Produtos/Create
@@ -75,7 +78,7 @@ namespace Produtos.Controllers
                 return NotFound();
             }
 
-            var produtosModel = await _context.ProdutosModel.FindAsync(id);
+            var produtosModel = await GetItem(id);
             if (produtosModel == null)
             {
                 return NotFound();
@@ -126,8 +129,7 @@ namespace Produtos.Controllers
                 return NotFound();
             }
 
-            var produtosModel = await _context.ProdutosModel
-                .FirstOrDefaultAsync(m => m.Codigo == id);
+            var produtosModel = await GetItem(id);
             if (produtosModel == null)
             {
                 return NotFound();
@@ -145,7 +147,7 @@ namespace Produtos.Controllers
             {
                 return Problem("Entity set 'ProdutosContext.ProdutosModel'  is null.");
             }
-            var produtosModel = await _context.ProdutosModel.FindAsync(id);
+            var produtosModel = await GetItem(id);
             if (produtosModel != null)
             {
                 _context.ProdutosModel.Remove(produtosModel);
