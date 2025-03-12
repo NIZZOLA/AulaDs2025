@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Produtos.Models.ProdutosModel>
+
+@{
+    ViewData["Title"] = "Cadastro de Produtos";
+}
+
+<h1>Cadastro de Produtos</h1>
+
+<p>
+    <a asp-action="Create">Incluir</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Unidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Custo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Preco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estoque)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Unidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Custo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imagem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estoque)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Codigo">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Codigo">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.Codigo">Excluir</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
