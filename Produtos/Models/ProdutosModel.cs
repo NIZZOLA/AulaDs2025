@@ -11,7 +11,7 @@ namespace Produtos.Models
         [DisplayName("Descrição")]
         public string Descricao { get; set; }
         [MaxLength(2, ErrorMessage = "O tamanho máximo é de 2 caracteres")]
-        public string Unidade { get; set; }
+        public UnidadeEnum Unidade { get; set; }
         public decimal Custo { get; set; }
         public decimal Preco { get; set; }
         public string Imagem { get; set; }
